@@ -1,5 +1,6 @@
 package br.edu.ifpb.si.pdm.meuslocais;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -19,7 +20,12 @@ public class MainActivity extends AppCompatActivity {
 
     private ListView lvLista;
     private CadastroLocal cadastroLocal;
-    private static final int SOBRE = 1;
+    // Options menu
+    private static final int QUANTIDADE = 1, LIMPAR = 2,SOBRE = 3;
+
+    // Para request Code do intent
+    private static final int ADD_LOCAL = 1;
+    private static final int LOCAL_INFO = 2;
 
     public MainActivity() {
         this.cadastroLocal = new CadastroLocal();
@@ -32,16 +38,18 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        this.carregarComponentes();
+
        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Adicionar novo local em um activity", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent it = new Intent(MainActivity.this, CadastroLocalActivity.class);
+                startActivityForResult(it, ADD_LOCAL);
+                /*Snackbar.make(view, "Adicionar novo local em um activity", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*/
             }
         });
-
-        this.carregarComponentes();
     }
 
     private void carregarComponentes(){
@@ -49,18 +57,43 @@ public class MainActivity extends AppCompatActivity {
 
         ArrayAdapter<Local> adapter = new ArrayAdapter<Local>(this, android.R.layout.simple_list_item_1, this.cadastroLocal.get());
         this.lvLista.setAdapter(adapter);
+        this.lvLista.setOnItemClickListener(new OnClickList());
 
-        //TODO
-        // this.lvLista.setOnItemClickListener(new OnClickList());
         //TODO
         // this.lvLista.setOnItemLongClickListener(new OnLongClickList());
     }
 
-    //TODO onClick chama intent pra activity local dinamico
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK){
+            if (requestCode == ADD_LOCAL){
+
+                // ######## duvida
+                // ############################
+                Local local = (Local) data.getSerializableExtra("LOCAL");
+                //Local local = (Local) getIntent().getSerializableExtra("LOCAL");
+                // #################################
+                // ############################
+
+                this.cadastroLocal.get().add(local);
+                // Notifica o novo cadastro
+                //((ArrayAdapter) ((ListView)findViewById(R.id.lvLista)).getAdapter()).notifyDataSetChanged();
+                ((ArrayAdapter)lvLista.getAdapter()).notifyDataSetChanged();
+            }
+        }
+    }
+
+    // onClick chama intent pra activity local dinamico
     private class OnClickList implements AdapterView.OnItemClickListener{
         @Override
        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             //Toast.makeText(MainActivity.this, parent.getAdapter().getItem(position).toString(), Toast.LENGTH_SHORT).show();
+            Local local =  (Local) parent.getAdapter().getItem(position);
+            Intent it = new Intent("LOCAL_INFO");
+            it.putExtra("LOCAL", local.getNome());
+            setResult(RESULT_OK, it);
+            startActivity(it);
         }
     }
     //TODO NAO SEI
@@ -78,7 +111,9 @@ public class MainActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         //getMenuInflater().inflate(R.menu.menu_main, menu);
        //return true;
-        menu.add(0, SOBRE, 1, "Sobre");
+        menu.add(0, QUANTIDADE, 1, "Quantidade");
+        menu.add(0, LIMPAR, 2, "Limpar");
+        menu.add(0, SOBRE, 3, "Sobre");
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -87,6 +122,13 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case SOBRE:
                 Toast.makeText(this, "AQUI CHAMA INTENT PRA SOBRE", Toast.LENGTH_SHORT).show();
+                break;
+            case QUANTIDADE:
+                Toast.makeText(this, Integer.toString(this.cadastroLocal.quantidade()), Toast.LENGTH_SHORT).show();
+                break;
+            case LIMPAR:
+                this.cadastroLocal.clear();
+                ((ArrayAdapter)this.lvLista.getAdapter()).notifyDataSetChanged();
                 break;
         }
         return super.onOptionsItemSelected(item);

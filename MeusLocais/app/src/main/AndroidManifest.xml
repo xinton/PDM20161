@@ -18,7 +18,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LocalActivity"></activity>
+        <activity android:name=".LocalActivity">
+            <intent-filter>
+                <action android:name="LOCAL_INFO" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".CadastroLocalActivity">
+            <intent-filter>
+                <action android:name="CADASTRAR_LOCAL" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

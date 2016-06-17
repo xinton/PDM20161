@@ -1,9 +1,11 @@
 package br.edu.ifpb.si.pdm.meuslocais;
 
+import java.io.Serializable;
+
 /**
  * Created by home on 16/06/2016.
  */
-public class Local {
+public class Local implements Serializable{
     private String nome;
     private String descricao;
     private String foto;

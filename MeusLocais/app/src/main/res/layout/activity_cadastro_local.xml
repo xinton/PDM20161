@@ -8,17 +8,17 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context=".LocalActivity">
+    tools:context="br.edu.ifpb.si.pdm.meuslocais.CadastroLocalActivity">
 
-
-    <TextView
-        android:text="Teste"
-        android:id="@+id/tvNome"
+    <EditText
+        android:id="@+id/etNome"
+        android:hint="Digite nome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <Button
-        android:id="@+id/btVoltar"
+        android:text="Cadastrar"
+        android:id="@+id/btCadastrar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
