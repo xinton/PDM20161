@@ -1,6 +1,7 @@
 package br.edu.ifpb.si.pdm.meuslocais;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -68,16 +69,23 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK){
             if (requestCode == ADD_LOCAL){
-
                 // ######## duvida
+                // 1- Passar objeto Local;
+                // 2- getItent;
                 // ############################
-                Local local = (Local) data.getSerializableExtra("LOCAL");
+                Local local = new Local(data.getStringExtra("NOME"));
+                local.setFoto((Bitmap) data.getParcelableExtra("FOTO"));
+                //-1
+                //Local local = (Local) data.getSerializableExtra("LOCAL");
+                //-2
                 //Local local = (Local) getIntent().getSerializableExtra("LOCAL");
                 // #################################
                 // ############################
 
-                this.cadastroLocal.get().add(local);
                 // Notifica o novo cadastro
+                this.cadastroLocal.get().add(local);
+
+                //-2
                 //((ArrayAdapter) ((ListView)findViewById(R.id.lvLista)).getAdapter()).notifyDataSetChanged();
                 ((ArrayAdapter)lvLista.getAdapter()).notifyDataSetChanged();
             }
@@ -92,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
             Local local =  (Local) parent.getAdapter().getItem(position);
             Intent it = new Intent("LOCAL_INFO");
             it.putExtra("LOCAL", local.getNome());
+            it.putExtra("FOTO", local.getFoto());
             setResult(RESULT_OK, it);
             startActivity(it);
         }

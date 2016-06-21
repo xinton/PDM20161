@@ -13,13 +13,26 @@
 
     <TextView
         android:text="Teste"
+        android:textSize="30sp"
         android:id="@+id/tvNome"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingBottom="16dp"/>
 
-    <Button
-        android:id="@+id/btVoltar"
+    <ImageView
+        android:background="@drawable/background"
+        android:id="@+id/imgLocal"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:text="Teste Descriçao"
+        android:id="@+id/tvDesc"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="16dp"/>
 
 </LinearLayout>

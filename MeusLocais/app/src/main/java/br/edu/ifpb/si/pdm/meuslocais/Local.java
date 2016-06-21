@@ -1,5 +1,7 @@
 package br.edu.ifpb.si.pdm.meuslocais;
 
+import android.graphics.Bitmap;
+
 import java.io.Serializable;
 
 /**
@@ -8,7 +10,7 @@ import java.io.Serializable;
 public class Local implements Serializable{
     private String nome;
     private String descricao;
-    private String foto;
+    private Bitmap foto;
     private String local;
 
     public Local(String nome){
@@ -19,7 +21,7 @@ public class Local implements Serializable{
         return descricao;
     }
 
-    public String getFoto() {
+    public Bitmap getFoto() {
         return foto;
     }
 
@@ -39,5 +41,9 @@ public class Local implements Serializable{
 
     public String toString(){
         return this.getNome();
+    }
+
+    public void setFoto(Bitmap foto) {
+        this.foto = foto;
     }
 }
