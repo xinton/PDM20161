@@ -12,6 +12,7 @@ public class LocalActivity extends AppCompatActivity {
 
     private TextView tvNome;
     private ImageView imgLocal;
+    private TextView tvLocalizacao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,13 +21,17 @@ public class LocalActivity extends AppCompatActivity {
 
         this.tvNome = (TextView) findViewById(R.id.tvNome);
         this.imgLocal = (ImageView) findViewById(R.id.imgLocal);
+        this.tvLocalizacao = (TextView) findViewById(R.id.tvLocalizacao);
 
         Intent intent = getIntent();
 
         String nome = intent.getStringExtra("LOCAL");
         Bitmap foto = intent.getParcelableExtra("FOTO");
+        String latitude = intent.getStringExtra("LATITUDE");
+        String longitude = intent.getStringExtra("LONGITUDE");
         this.tvNome.setText(nome);
         this.imgLocal.setImageBitmap(foto);
+        this.tvLocalizacao.setText(latitude+longitude);
         //Toast.makeText(this, nome, Toast.LENGTH_SHORT).show();
     }
 }

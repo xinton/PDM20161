@@ -11,7 +11,8 @@ public class Local implements Serializable{
     private String nome;
     private String descricao;
     private Bitmap foto;
-    private String local;
+    private String latitude;
+    private String longitude;
 
     public Local(String nome){
         this.nome = nome;
@@ -24,11 +25,6 @@ public class Local implements Serializable{
     public Bitmap getFoto() {
         return foto;
     }
-
-    public String getLocal() {
-        return local;
-    }
-
 
     public void setNome(String nome) {
         this.nome = nome;
@@ -45,5 +41,21 @@ public class Local implements Serializable{
 
     public void setFoto(Bitmap foto) {
         this.foto = foto;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
     }
 }

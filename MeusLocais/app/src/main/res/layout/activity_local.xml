@@ -28,6 +28,11 @@
         android:layout_gravity="center"/>
 
     <TextView
+        android:id="@+id/tvLocalizacao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
         android:text="Teste Descriçao"
         android:id="@+id/tvDesc"
         android:layout_width="match_parent"

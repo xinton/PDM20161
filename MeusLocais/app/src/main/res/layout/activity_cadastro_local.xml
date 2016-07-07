@@ -21,6 +21,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+    <TextView
+        android:id="@+id/tvLocalizacao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <Button
         android:text="Foto"
         android:id="@+id/btnFoto"
@@ -30,6 +35,12 @@
     <Button
         android:text="Cadastrar"
         android:id="@+id/btCadastrar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:text="Obter Localização"
+        android:id="@+id/btnLocalizacao"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

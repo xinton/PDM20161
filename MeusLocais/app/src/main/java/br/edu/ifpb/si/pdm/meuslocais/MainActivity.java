@@ -69,24 +69,13 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK){
             if (requestCode == ADD_LOCAL){
-                // ######## duvida
-                // 1- Passar objeto Local;
-                // 2- getItent;
-                // ############################
                 Local local = new Local(data.getStringExtra("NOME"));
                 local.setFoto((Bitmap) data.getParcelableExtra("FOTO"));
-                //-1
-                //Local local = (Local) data.getSerializableExtra("LOCAL");
-                //-2
-                //Local local = (Local) getIntent().getSerializableExtra("LOCAL");
-                // #################################
-                // ############################
-
+                local.setLatitude(data.getStringExtra("LATITUDE"));
+                local.setLongitude(data.getStringExtra("LONGITUDE"));
                 // Notifica o novo cadastro
                 this.cadastroLocal.get().add(local);
 
-                //-2
-                //((ArrayAdapter) ((ListView)findViewById(R.id.lvLista)).getAdapter()).notifyDataSetChanged();
                 ((ArrayAdapter)lvLista.getAdapter()).notifyDataSetChanged();
             }
         }
@@ -101,6 +90,8 @@ public class MainActivity extends AppCompatActivity {
             Intent it = new Intent("LOCAL_INFO");
             it.putExtra("LOCAL", local.getNome());
             it.putExtra("FOTO", local.getFoto());
+            it.putExtra("LATITUDE", local.getLatitude());
+            it.putExtra("LONGITUDE", local.getLongitude());
             setResult(RESULT_OK, it);
             startActivity(it);
         }
