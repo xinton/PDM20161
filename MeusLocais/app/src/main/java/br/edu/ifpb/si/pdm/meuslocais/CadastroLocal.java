@@ -15,6 +15,7 @@ public class CadastroLocal {
     }
 
     private void insere(){
+
         this.locais.add(new Local("local"));
     }
 

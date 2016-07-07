@@ -25,12 +25,31 @@
         android:id="@+id/imgLocal"
         android:layout_width="300dp"
         android:layout_height="300dp"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        />
 
-    <TextView
-        android:id="@+id/tvLocalizacao"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:gravity="center">
+
+        <TextView
+            android:text="Localização"
+            android:id="@+id/tvLocalizacao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:text="Abrir no Mapa"
+            android:textSize="12sp"
+            android:id="@+id/btnMapa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+        />
+
+    </LinearLayout>
 
     <TextView
         android:text="Teste Descriçao"
